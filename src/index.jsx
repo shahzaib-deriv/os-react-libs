@@ -98,16 +98,4 @@ if (typeof window !== 'undefined') {
   };
 }
 
-// Export everything for ESM imports
-export {
-  // React Hot Toast exports
-  toast,
-  Toaster,
-  ToastBar,
-  renderToaster,
-  
-  // Novu React exports
-  Inbox,
-  renderInbox,
-  clearInbox
-};
+// No ESM exports to allow for proper Fast Refresh

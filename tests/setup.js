@@ -4,11 +4,11 @@ import { vi } from 'vitest';
 
 // Create a minimal window object if it doesn't exist
 if (typeof window === 'undefined') {
-  global.window = {};
+  globalThis.window = {};
 }
 
 // Mock console methods to avoid cluttering test output
-global.console = {
+globalThis.console = {
   ...console,
   log: vi.fn(),
   error: vi.fn(),

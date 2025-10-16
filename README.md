@@ -71,7 +71,7 @@ See the [tests/README.md](tests/README.md) file for more information about the t
 
 ### Demo
 
-Open `test.html` in a browser to see a demo of the bundled libraries.
+Open `index.html` in a browser to see a demo of the bundled libraries.
 
 ## API Consistency
 
