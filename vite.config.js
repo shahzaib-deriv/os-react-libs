@@ -16,7 +16,7 @@ export default defineConfig({
       entry: resolve(__dirname, 'src/index.jsx'),
       name: 'ReactLibs',
       // We want both ES and UMD formats
-      formats: ['umd', 'es'],
+      formats: ['umd'],
       fileName: (format) => `react-libs.${format}.js`,
     },
     rollupOptions: {
