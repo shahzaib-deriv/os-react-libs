@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run tests
+echo "Running tests..."
+npm test
+
+# Run API consistency check
+echo "Checking API consistency..."
+npm run check-api
+
+# If we got this far, all checks passed
+echo "✅ All checks passed!"
