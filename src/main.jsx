@@ -49,8 +49,6 @@ export function renderToaster(container, props = {}) {
 		root.render(
 			<Toaster {...mergedProps}>
 				{(t) => (
-					// biome-ignore lint/a11y/useKeyWithClickEvents: Needed for dismissing toasts on click
-					// biome-ignore lint/a11y/noStaticElementInteractions: needed for dismissing toasts on click
 					<div onClick={() => toast.dismiss(t.id)}>
 						<ToastBar toast={t} />
 					</div>

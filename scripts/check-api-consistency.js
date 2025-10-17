@@ -8,9 +8,9 @@
  * It can be used in CI/CD pipelines to ensure API consistency before deployment.
  */
 
-import { spawn } from "child_process";
-import { dirname, resolve } from "path";
-import { fileURLToPath } from "url";
+import { spawn } from "node:child_process";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = resolve(__dirname, "..");
