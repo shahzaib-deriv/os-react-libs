@@ -1,9 +1,9 @@
 export default {
-  testEnvironment: 'jsdom',
+  testEnvironment: "jsdom",
   transform: {},
-  extensionsToTreatAsEsm: ['.jsx'],
+  extensionsToTreatAsEsm: [".jsx"],
   moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
+    "^(\\.{1,2}/.*)\\.js$": "$1",
   },
-  setupFilesAfterEnv: ['<rootDir>/tests/setup.js'],
+  setupFilesAfterEnv: ["<rootDir>/tests/setup.js"],
 };

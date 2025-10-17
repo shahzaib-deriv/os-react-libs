@@ -1,9 +1,9 @@
 // Import testing library extensions
-import '@testing-library/jest-dom';
-import { vi } from 'vitest';
+import "@testing-library/jest-dom";
+import { vi } from "vitest";
 
 // Create a minimal window object if it doesn't exist
-if (typeof window === 'undefined') {
+if (typeof window === "undefined") {
   globalThis.window = {};
 }
 
@@ -12,7 +12,7 @@ globalThis.console = {
   ...console,
   log: vi.fn(),
   error: vi.fn(),
-  warn: vi.fn()
+  warn: vi.fn(),
 };
 
 // Set up any other global configurations needed for tests

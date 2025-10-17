@@ -1,26 +1,26 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import { resolve } from 'path';
-import { fileURLToPath } from 'url';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import { resolve } from "path";
+import { fileURLToPath } from "url";
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
+const __dirname = fileURLToPath(new URL(".", import.meta.url));
 
 export default defineConfig({
   plugins: [react()],
   define: {
-    'process.env.NODE_ENV': '"production"',
+    "process.env.NODE_ENV": '"production"',
   },
   build: {
     lib: {
       // The entry point is our combined index file
-      entry: resolve(__dirname, 'src/index.jsx'),
-      name: 'ReactLibs',
+      entry: resolve(__dirname, "src/index.jsx"),
+      name: "ReactLibs",
       // Only UMD format as requested
-      formats: ['umd'],
+      formats: ["umd"],
       fileName: (format) => `react-libs.${format}.js`,
     },
     // Use terser for better minification
-    minify: 'terser',
+    minify: "terser",
     terserOptions: {
       compress: {
         // Remove console statements

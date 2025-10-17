@@ -1,13 +1,13 @@
 /**
  * API Consistency Tests
- * 
+ *
  * These tests ensure that the exposed APIs remain consistent across changes.
  * They verify the presence of all expected objects, methods, and properties.
  */
 
-import { describe, test, expect, beforeEach, vi } from 'vitest';
-import fs from 'fs';
-import path from 'path';
+import { describe, test, expect, beforeEach, vi } from "vitest";
+import fs from "fs";
+import path from "path";
 
 // Create mock objects that match the expected API structure
 beforeEach(() => {
@@ -20,14 +20,14 @@ beforeEach(() => {
     dismiss: vi.fn(),
     remove: vi.fn(),
     removeAll: vi.fn(),
-    promise: vi.fn()
+    promise: vi.fn(),
   };
 
   // Mock NovuReact
   window.NovuReact = {
     Inbox: {},
     renderInbox: vi.fn(),
-    clearInbox: vi.fn()
+    clearInbox: vi.fn(),
   };
 
   // Mock NovuSessionInterceptor
@@ -35,7 +35,7 @@ beforeEach(() => {
     initialize: vi.fn(),
     getSessionData: vi.fn(),
     clearSessionData: vi.fn(),
-    getRemainingTTL: vi.fn()
+    getRemainingTTL: vi.fn(),
   };
 
   // Mock ReactLibs
@@ -44,117 +44,140 @@ beforeEach(() => {
       toast: window.ReactHotToast,
       Toaster: {},
       ToastBar: {},
-      renderToaster: vi.fn()
+      renderToaster: vi.fn(),
     },
     NovuReact: window.NovuReact,
-    NovuSessionInterceptor: window.NovuSessionInterceptor
+    NovuSessionInterceptor: window.NovuSessionInterceptor,
   };
 });
 
-describe('ReactLibs API Consistency', () => {
+describe("ReactLibs API Consistency", () => {
   // Verify that the source files exist
-  test('Source files should exist', () => {
-    expect(fs.existsSync(path.resolve('./src/window-libs.js'))).toBe(true);
-    expect(fs.existsSync(path.resolve('./src/novu.jsx'))).toBe(true);
-    expect(fs.existsSync(path.resolve('./src/novu-session-interceptor.js'))).toBe(true);
+  test("Source files should exist", () => {
+    expect(fs.existsSync(path.resolve("./src/window-libs.js"))).toBe(true);
+    expect(fs.existsSync(path.resolve("./src/novu.jsx"))).toBe(true);
+    expect(
+      fs.existsSync(path.resolve("./src/novu-session-interceptor.js")),
+    ).toBe(true);
   });
 
-  test('window.ReactLibs should exist and contain expected libraries', () => {
+  test("window.ReactLibs should exist and contain expected libraries", () => {
     expect(window.ReactLibs).toBeDefined();
     expect(Object.keys(window.ReactLibs)).toEqual(
-      expect.arrayContaining(['ReactHotToast', 'NovuReact', 'NovuSessionInterceptor'])
+      expect.arrayContaining([
+        "ReactHotToast",
+        "NovuReact",
+        "NovuSessionInterceptor",
+      ]),
     );
   });
 
-  describe('ReactHotToast API', () => {
-    test('window.ReactHotToast should exist', () => {
+  describe("ReactHotToast API", () => {
+    test("window.ReactHotToast should exist", () => {
       expect(window.ReactHotToast).toBeDefined();
     });
 
-    test('ReactHotToast should have all expected methods', () => {
+    test("ReactHotToast should have all expected methods", () => {
       const expectedMethods = [
-        'success', 'error', 'loading', 'custom', 'dismiss', 
-        'remove', 'removeAll', 'promise'
+        "success",
+        "error",
+        "loading",
+        "custom",
+        "dismiss",
+        "remove",
+        "removeAll",
+        "promise",
       ];
-      
-      expectedMethods.forEach(method => {
+
+      expectedMethods.forEach((method) => {
         expect(window.ReactHotToast[method]).toBeDefined();
-        expect(typeof window.ReactHotToast[method]).toBe('function');
+        expect(typeof window.ReactHotToast[method]).toBe("function");
       });
     });
 
-    test('window.ReactLibs.ReactHotToast should contain all expected properties', () => {
+    test("window.ReactLibs.ReactHotToast should contain all expected properties", () => {
       const expectedProperties = [
-        'toast', 'Toaster', 'ToastBar', 'renderToaster'
+        "toast",
+        "Toaster",
+        "ToastBar",
+        "renderToaster",
       ];
-      
-      expectedProperties.forEach(prop => {
+
+      expectedProperties.forEach((prop) => {
         expect(window.ReactLibs.ReactHotToast[prop]).toBeDefined();
       });
     });
   });
 
-  describe('NovuReact API', () => {
-    test('window.NovuReact should exist', () => {
+  describe("NovuReact API", () => {
+    test("window.NovuReact should exist", () => {
       expect(window.NovuReact).toBeDefined();
     });
 
-    test('NovuReact should have all expected methods and components', () => {
-      const expectedProperties = [
-        'Inbox', 'renderInbox', 'clearInbox'
-      ];
-      
-      expectedProperties.forEach(prop => {
+    test("NovuReact should have all expected methods and components", () => {
+      const expectedProperties = ["Inbox", "renderInbox", "clearInbox"];
+
+      expectedProperties.forEach((prop) => {
         expect(window.NovuReact[prop]).toBeDefined();
       });
     });
 
-    test('window.ReactLibs.NovuReact should contain all expected properties', () => {
-      const expectedProperties = [
-        'Inbox', 'renderInbox', 'clearInbox'
-      ];
-      
-      expectedProperties.forEach(prop => {
+    test("window.ReactLibs.NovuReact should contain all expected properties", () => {
+      const expectedProperties = ["Inbox", "renderInbox", "clearInbox"];
+
+      expectedProperties.forEach((prop) => {
         expect(window.ReactLibs.NovuReact[prop]).toBeDefined();
       });
     });
 
-    test('NovuReact should NOT contain removed properties', () => {
+    test("NovuReact should NOT contain removed properties", () => {
       const removedProperties = [
-        'NovuProvider', 'Notifications', 'NotificationBell', 
-        'useNotifications', 'useNovu', 'initializeNovu'
+        "NovuProvider",
+        "Notifications",
+        "NotificationBell",
+        "useNotifications",
+        "useNovu",
+        "initializeNovu",
       ];
-      
-      removedProperties.forEach(prop => {
+
+      removedProperties.forEach((prop) => {
         expect(window.NovuReact[prop]).toBeUndefined();
       });
     });
   });
 
-  describe('NovuSessionInterceptor API', () => {
-    test('window.NovuSessionInterceptor should exist', () => {
+  describe("NovuSessionInterceptor API", () => {
+    test("window.NovuSessionInterceptor should exist", () => {
       expect(window.NovuSessionInterceptor).toBeDefined();
     });
 
-    test('NovuSessionInterceptor should have all expected methods', () => {
+    test("NovuSessionInterceptor should have all expected methods", () => {
       const expectedMethods = [
-        'initialize', 'getSessionData', 'clearSessionData', 'getRemainingTTL'
+        "initialize",
+        "getSessionData",
+        "clearSessionData",
+        "getRemainingTTL",
       ];
-      
-      expectedMethods.forEach(method => {
+
+      expectedMethods.forEach((method) => {
         expect(window.NovuSessionInterceptor[method]).toBeDefined();
-        expect(typeof window.NovuSessionInterceptor[method]).toBe('function');
+        expect(typeof window.NovuSessionInterceptor[method]).toBe("function");
       });
     });
 
-    test('window.ReactLibs.NovuSessionInterceptor should contain all expected methods', () => {
+    test("window.ReactLibs.NovuSessionInterceptor should contain all expected methods", () => {
       const expectedMethods = [
-        'initialize', 'getSessionData', 'clearSessionData', 'getRemainingTTL'
+        "initialize",
+        "getSessionData",
+        "clearSessionData",
+        "getRemainingTTL",
       ];
-      
-      expectedMethods.forEach(method => {
+
+      expectedMethods.forEach((method) => {
         expect(window.ReactLibs.NovuSessionInterceptor[method]).toBeDefined();
-        expect(typeof window.ReactLibs.NovuSessionInterceptor[method]).toBe('function');
+        expect(typeof window.ReactLibs.NovuSessionInterceptor[method]).toBe(
+          "function",
+        );
       });
     });
   });
